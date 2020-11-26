@@ -4,7 +4,7 @@
 #' @param start A numeric vector of x,y, coordinates for the landmark defining the start of the curve
 #' @param curve A matrix (p x k) of 2D coordinates for a set of ordered points defining a curve
 #' @param nPoints Numeric how many semilandmarks to place equidistantly along the curve (not counting beginning and end points)
-#' @param close Logical Whether the curve is closed (TRUE) or open (FALSE)
+#' @param closed Logical Whether the curve is closed (TRUE) or open (FALSE)
 
 #' @return Function returns a matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve
 
@@ -26,6 +26,8 @@ digit.curves.p <- function(start, curve, nPoints, closed=TRUE){
   if(closed) res <- res[-NROW(res),]
   res
 }
+
+
 #' basic function for spacing out curve points via linear interpolation (adapted from the function digit.curves
 #' of the geomorph package). The main different is that curves are normalized to allow an intercomaprison of confidence scores
 #' regardless of the input data.

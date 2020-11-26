@@ -4,7 +4,7 @@
 \alias{curve.funct}
 \title{Create level curves for copulae and other models}
 \usage{
-curve.funct(pxf, pyf, mar1, mar2, u, pos, pobje, ng = 100, inter = "comb")
+curve.funct(pxf, pyf, mar1, mar2, pos, pobje, ng = 100, inter = "comb")
 }
 \arguments{
 \item{pxf}{Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)}
@@ -17,11 +17,11 @@ curve.funct(pxf, pyf, mar1, mar2, u, pos, pobje, ng = 100, inter = "comb")
 
 \item{pos}{part of the curve to be modelled '\code{l}' for the left part, '\code{m}' for the moddle part and '\code{r}' for the right part}
 
+\item{pobje}{probability of the level curve to be modeled}
+
 \item{ng}{number of points to be interpolated}
 
 \item{inter}{type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,}
-
-\item{pobj}{probability of the level curve to be modelled}
 }
 \value{
 Level curves for a given joint probability

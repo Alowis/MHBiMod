@@ -7,14 +7,14 @@
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
 #' @param pos part of the curve to be modelled '\code{l}' for the left part, '\code{m}' for the moddle part and '\code{r}' for the right part
-#' @param pobj probability of the level curve to be modelled
+#' @param pobje probability of the level curve to be modeled
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #'
 #' @return Level curves for a given joint probability
 #'
 
-curve.funct<-function(pxf,pyf,mar1,mar2,u,pos,pobje,ng=100,inter="comb"){
+curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
   if(pos=="l"){
     xmin=0
     xmax=0.9
@@ -91,12 +91,12 @@ curve.funct<-function(pxf,pyf,mar1,mar2,u,pos,pobje,ng=100,inter="comb"){
 #'
 #' Take data on uniform margins and fit the Ledford and Tawn (1997) joint tail model. Also contains the method where additional information from values that are extreme in at most one variable is used.
 #'
-#' @param pxf Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)
-#' @param pyf Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
+#' @param px Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)
+#' @param py Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
 #' @param pos part of the curve to be modelled '\code{l}' for the left part, '\code{m}' for the moddle part and '\code{r}' for the right part
-#' @param pobj probability of the level curve to be modelled
+#' @param pobje probability of the level curve to be modelled
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #' @param logm log tranformation of the margins '\code{T}'of '\code{F}'
@@ -104,7 +104,7 @@ curve.funct<-function(pxf,pyf,mar1,mar2,u,pos,pobje,ng=100,inter="comb"){
 #' @return Level curves for a given joint probability
 #'
 
-curve.funct.a<-function(px,py,mar1,mar2,u,pos,pobje,ng=100,inter="comb",logm=F){
+curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F){
   if(logm==T) {
     mar1<-log(mar1)
     mar2<-log(mar2)
@@ -180,14 +180,15 @@ curve.funct.a<-function(px,py,mar1,mar2,u,pos,pobje,ng=100,inter="comb",logm=F){
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
 #' @param pos part of the curve to be modelled '\code{l}' for the left part, '\code{m}' for the middle part and '\code{r}' for the right part
-#' @param pobj probability of the level curve to be modelled
+#' @param pobje probability of the level curve to be modelled
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #'
 #' @return Level curves for a given joint probability
-#'
+#' @importFrom grDevices contourLines
+#' @importFrom graphics abline contour segments
 
-curve.funct.b<-function(pxf,pyf,mar1,mar2,u,pos,pobje,ng=100,inter="comb"){
+curve.funct.b<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
   if(pos=="l"){
     xmin=0
     xmax=0.99

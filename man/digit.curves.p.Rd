@@ -14,7 +14,7 @@ digit.curves.p(start, curve, nPoints, closed = TRUE)
 
 \item{nPoints}{Numeric how many semilandmarks to place equidistantly along the curve (not counting beginning and end points)}
 
-\item{close}{Logical Whether the curve is closed (TRUE) or open (FALSE)}
+\item{closed}{Logical Whether the curve is closed (TRUE) or open (FALSE)}
 }
 \value{
 Function returns a matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve

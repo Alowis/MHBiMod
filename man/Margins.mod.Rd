@@ -2,7 +2,7 @@
 % Please edit documentation in R/supplement.funct.R
 \name{Margins.mod}
 \alias{Margins.mod}
-\title{Compute uniform margins with GDP}
+\title{Compute uniform margins with Generalized Pareto Distribution above threshold}
 \usage{
 Margins.mod(tr1, tr2, u)
 }
@@ -17,5 +17,5 @@ Margins.mod(tr1, tr2, u)
 pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
 }
 \description{
-Compute uniform margins with GDP
+Compute uniform margins with Generalized Pareto Distribution above threshold
 }

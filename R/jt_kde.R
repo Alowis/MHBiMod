@@ -6,15 +6,17 @@
 #' @param beta smoothing parameter for the transition between asymptotic dependent and independent regimes near the axes
 #' @param vtau estimate of the rank correlation between the two variables
 #' @param devplot additional plots for development (significantly slows the function)
-#'#@param px Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)
+#' @param px Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)
 #' @param py Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
 #' @param interh type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #'
 #' @return Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
+#' @importFrom stats approx cor.test na.omit optim
+#'          predict qchisq qnorm quantile rnorm spline uniroot
 
-JT.KDE.ap<-function(u2,pbas ,pobj,beta,margins,vtau,devplot=F,mar1,mar2,px,py,interh=NA){
+JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA){
 
   e1<-seq(0,1.2*max(u2[,1]),length.out=200)
   e2<-seq(0,1.2*max(u2[,2]),length.out=200)
@@ -253,7 +255,6 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,margins,vtau,devplot=F,mar1,mar2,px,py,in
 
     grid <- expand.grid(lon=gridx, lat=gridy)
 
-    library(zoo)
 
     for (nap in 1: length(pxg)){ matjt[,nap]<-na.approx(matjt[,nap],maxgap = 5,na.rm=F)}
 

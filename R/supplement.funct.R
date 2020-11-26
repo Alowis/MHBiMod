@@ -28,7 +28,7 @@ AnalogSel<-function(u2){
 
 
 
-#' Compute uniform margins with GDP
+#' Compute uniform margins with Generalized Pareto Distribution above threshold
 #'
 #' @param u Two column data frame
 #' @param tr1 extreme threshold for first variable

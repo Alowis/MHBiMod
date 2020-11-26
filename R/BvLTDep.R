@@ -10,7 +10,8 @@
 #' @param marg.inf Is additional marginal information from points that are extreme in only one variable used? \code{FALSE} gives Ledford and Tawn (1997) result, \code{TRUE} gives results using Section 2.4.2 from Hugo Winter's thesis.
 #'
 #' @return Estimates of the dependence parameters, threshold dependent extremal dependence measure with confidence intervals
-#'
+#' @importFrom stats approx cor.test na.omit optim
+#'          predict qchisq qnorm quantile rnorm spline uniroot
 
 
 Bv.LT.Dep <- function(data,mod.thresh.u,crit.lev.u,sig.lev=0.05,ci.meth='se',marg.inf=F){

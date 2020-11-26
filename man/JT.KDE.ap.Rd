@@ -9,7 +9,6 @@ JT.KDE.ap(
   pbas,
   pobj,
   beta,
-  margins,
   vtau,
   devplot = F,
   mar1,
@@ -30,12 +29,13 @@ JT.KDE.ap(
 
 \item{vtau}{estimate of the rank correlation between the two variables}
 
-\item{devplot}{additional plots for development (significantly slows the function)
-#@param px Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)}
+\item{devplot}{additional plots for development (significantly slows the function)}
 
 \item{mar1}{Values of the first margin}
 
 \item{mar2}{Values of the second margin}
+
+\item{px}{Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)}
 
 \item{py}{Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)}
 
