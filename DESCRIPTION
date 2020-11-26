@@ -1,5 +1,5 @@
 Package: MHBiMod
-Title: What the Package Does (One Line, Title Case)
+Title: Models Bivariate Dependence and Produces Bivariate Return Periods
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Alois",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "alois.tilloy@kcl.ac.uk",
            comment = c(ORCID = "https://orcid.org/0000-0002-5881-0642"))
-Description: This package provides a set of function that model the
+Description: Provides a set of function that model the
     dependence between two variables in the extremes, select most 
     relevant models, estimate bivariate return periods and create 
     bivariate level curves.
@@ -24,7 +24,7 @@ Imports:
     ks,
     lattice,
     texmex,
+    SpatialExtremes,
 Suggests: 
-    knitr,
-    rmarkdown
+    knitr
 VignetteBuilder: knitr
