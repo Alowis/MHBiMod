@@ -1,6 +1,6 @@
 Package: mobirep
 Title: Models Bivariate Dependence and Produces Bivariate Return Periods
-Version: 0.0.0.9000
+Version: 0.1
 Authors@R: 
     person(given = "Alois",
            family = "Tilloy",
@@ -11,10 +11,9 @@ Description: Provides a set of function that model the
     dependence between two variables in the extremes, select most 
     relevant models, estimate bivariate return periods and create 
     bivariate level curves.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+License: use_mit_license()
 Encoding: UTF-8
-LazyData: true
+LazyData: True
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: texmex
@@ -30,6 +29,6 @@ Imports:
     ggplot2,
     viridis
 Suggests: 
-    knitr
+    knitr,
+    testthat
 VignetteBuilder: knitr
-
