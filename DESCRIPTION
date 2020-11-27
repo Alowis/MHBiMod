@@ -17,16 +17,18 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Depends: texmex
 Imports:
     stats,
     copBasic,
     grDevices,
     ks,
     lattice,
-    texmex,
     SpatialExtremes,
     zoo,
-    copula
+    copula,
+    ggplot2,
+    viridis
 Suggests: 
     knitr
 VignetteBuilder: knitr

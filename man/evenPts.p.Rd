@@ -9,6 +9,9 @@ used in digit.curves.p}
 \usage{
 evenPts.p(x, n)
 }
+\arguments{
+\item{x, n}{numeric vectors}
+}
 \description{
 basic function for spacing out curve points via linear interpolation (adapted from the function digit.curves
 of the geomorph package). The main different is that curves are normalized to allow an intercomaprison of confidence scores

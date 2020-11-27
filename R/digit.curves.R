@@ -5,7 +5,7 @@
 #' @param curve A matrix (p x k) of 2D coordinates for a set of ordered points defining a curve
 #' @param nPoints Numeric how many semilandmarks to place equidistantly along the curve (not counting beginning and end points)
 #' @param closed Logical Whether the curve is closed (TRUE) or open (FALSE)
-
+#' @export
 #' @return Function returns a matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve
 
 digit.curves.p <- function(start, curve, nPoints, closed=TRUE){
@@ -32,6 +32,7 @@ digit.curves.p <- function(start, curve, nPoints, closed=TRUE){
 #' of the geomorph package). The main different is that curves are normalized to allow an intercomaprison of confidence scores
 #' regardless of the input data.
 #' used in digit.curves.p
+#' @param x,n numeric vectors
 evenPts.p <- function(x, n){
   x <- as.matrix(na.omit(x))
   # x<-round(x,6)

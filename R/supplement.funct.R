@@ -3,6 +3,7 @@
 #' see: https://nhess.copernicus.org/articles/20/2091/2020/nhess-20-2091-2020.html for more detaila
 #'
 #' @param u2 Two column data frame
+#' @export
 #' @return list of extremal dependence measures correponding to potential analogous
 AnalogSel<-function(u2){
   chiest<-chi(u2,qlim=c(0.75,0.92),nq=100)
@@ -33,7 +34,7 @@ AnalogSel<-function(u2){
 #' @param u Two column data frame
 #' @param tr1 extreme threshold for first variable
 #' @param tr2 extreme threshold for second variable
-
+#' @export
 #' @return pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
 Margins.mod<-function(tr1,tr2,u)
 {
@@ -145,7 +146,7 @@ Margins.mod<-function(tr1,tr2,u)
 #' @param lines location of the objective level curve for which the deesnity needs to be estimated in the 2D space
 #' @param tl indicator which model's density have been estimated in the kdetab, '\code{l}' the joint tail model, '\code{h}' for the conditional extremes model
 #' @param lines2 location of the base level curve (only used when tl=l)
-#'
+#' @export
 #' @return density for each points (couple x,y) along the level curves
 densi.curv.em<-function(kdetab,lines,tl,lines2){
   densim<-c()
@@ -179,7 +180,7 @@ densi.curv.em<-function(kdetab,lines,tl,lines2){
 #'
 #' @param lines location of the objective level curve for which the deesnity needs to be estimated in the 2D space
 #' @param copi a copula function with the parameters fitted to the bivariate dataset
-#'
+#' @export
 #' @return density for each points (couple x,y) along the level curves for copulae
 densi.curv.cop<-function(lines, copi){
   linep<-lines

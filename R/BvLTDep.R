@@ -8,7 +8,7 @@
 #' @param sig.lev Significance level for confidence intervals (\code{default} 0.05 for 95\code{\%} confidence interval)
 #' @param ci.meth Method to use to obtain confidence intervals, '\code{se}' for standard error confidence intervals and '\code{pl}' for profile likelihood confidence intervals
 #' @param marg.inf Is additional marginal information from points that are extreme in only one variable used? \code{FALSE} gives Ledford and Tawn (1997) result, \code{TRUE} gives results using Section 2.4.2 from Hugo Winter's thesis.
-#'
+#' @export
 #' @return Estimates of the dependence parameters, threshold dependent extremal dependence measure with confidence intervals
 #' @importFrom stats approx cor.test na.omit optim
 #'          predict qchisq qnorm quantile rnorm spline uniroot

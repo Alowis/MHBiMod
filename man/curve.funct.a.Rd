@@ -9,7 +9,6 @@ curve.funct.a(
   py,
   mar1,
   mar2,
-  u,
   pos,
   pobje,
   ng = 100,

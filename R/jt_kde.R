@@ -11,7 +11,7 @@
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
 #' @param interh type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
-#'
+#' @export
 #' @return Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
 #' @importFrom stats approx cor.test na.omit optim
 #'          predict qchisq qnorm quantile rnorm spline uniroot
@@ -289,7 +289,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
 #' @param num.sim The number of simulated observations to be generated for prediction (from texmex)
 #' @param pobj objective joint return period modelled with the conditional extremes model
 #' @param interh type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
-#'
+#' @export
 #' @return Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures
 
 Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb"){

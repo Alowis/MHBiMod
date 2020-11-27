@@ -10,7 +10,7 @@
 #' @param pobje probability of the level curve to be modeled
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
-#'
+#' @export
 #' @return Level curves for a given joint probability
 #'
 
@@ -100,7 +100,7 @@ curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #' @param logm log tranformation of the margins '\code{T}'of '\code{F}'
-#'
+#' @export
 #' @return Level curves for a given joint probability
 #'
 
@@ -183,7 +183,7 @@ curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F){
 #' @param pobje probability of the level curve to be modelled
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
-#'
+#' @export
 #' @return Level curves for a given joint probability
 #' @importFrom grDevices contourLines
 #' @importFrom graphics abline contour segments
