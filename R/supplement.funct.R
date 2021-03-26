@@ -131,10 +131,11 @@ Margins.mod<-function(tr1,tr2,u)
   plot(pxfp,u1b)
   plot(pyfp,u2b)
 
-  kk<-data.frame(pxfp,pyfp)
-  uu<-data.frame(u1b,u2b)
+  uvar<-data.frame(pxf,pyf)
+  uvar_ext<-data.frame(pxfp,pyfp)
+  val_ext<-data.frame(u1b,u2b)
 
-  return(list(kk,uu))
+  return(list("uvar"=uvar,"uvar_ext"=uvar_ext,val_ext=val_ext))
 }
 
 

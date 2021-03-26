@@ -288,6 +288,7 @@ Bv.LT.Dep <- function(data,mod.thresh.u,crit.lev.u,sig.lev=0.05,ci.meth='se',mar
     } else {
       chiCIs <- c(uniroot(crit.val,c(1e-100,chi))$root,uniroot(crit.val,c(chi,1))$root)
     }
+    etaCIs <- c(f.func(c(chat,CIl),crit.lev.p),f.func(c(chat,CIu),crit.lev.p))
 
     # Have started using uniroot instead of uniroot.all. The latter command
     # uses a strange method that is hard to use here. I am only currently

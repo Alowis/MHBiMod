@@ -15,9 +15,9 @@
 #' @return Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
 #' @importFrom stats approx cor.test na.omit optim
 #'          predict qchisq qnorm quantile rnorm spline uniroot
-#' @import ks
+#' @import ks zoo lattice
 
-JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA){
+JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=NA){
 
   e1<-seq(0,1.2*max(u2[,1]),length.out=200)
   e2<-seq(0,1.2*max(u2[,2]),length.out=200)
@@ -95,7 +95,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
   qc<-.95
   rq0<-seq(0.75,0.95,by=0.01)
   for(q0 in rq0){
-    estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='pl',marg.inf=T),silent = T)
+    estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=T),silent = T)
     qd<-try((estims$par[2]),silent=T)
     cd<-try((estims$chiCIs),silent=T)
     cc<-try((estims$chi),silent=T)
@@ -117,7 +117,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
   sh<-which(sumd<=-0.02|sumd>=0.02 )[1]
   q0<-rq0[sh-1]
   plot(sumd)
-  estims<-try(BveLTDep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=T),silent = T)
+  estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=T),silent = T)
   chat=NA
   etahat=NA
   Chilow=NA
@@ -185,7 +185,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
       objy<-approx(py,mar2, xout = projbacky, method = "linear",yleft = min(mar2),yright = max(mar2), rule = 1)$y
 
       wqobj<-cbind(objx, objy)
-      wqobj<-removeNA(wqobj)
+      wqobj<-na.omit(wqobj)
       wqobj<-data.frame(wqobj)
       wqobj[,1]<-jitter(wqobj[,1])
       xlt=seq(min(wqobj[,1]),max(wqobj[,1])-0.1,length.out = 120)
@@ -293,7 +293,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
 #' @export
 #' @return Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures
 
-Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb"){
+Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb",mar1,mar2,px,py){
   names(u2)= c("V1","V2")
   thresh1 <- tr1
   thresh2 <- tr2
@@ -345,9 +345,9 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb"){
   plot(onlysim)
 
 
-
-  JointExcureve_file=paste0(getwd(),"/Multimodel_Sim/Joint_excurves.R")
-  source (JointExcureve_file)
+#
+#   JointExcureve_file=paste0(getwd(),"/Multimodel_Sim/Joint_excurves.R")
+#   source (JointExcureve_file)
   pobj1=pobj/(1-tsim)
 
   if(interh=="casc"){
@@ -355,7 +355,7 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb"){
     ngx=10000
 
 
-    godx<-approx(u1b,px, n = ngx, method = "linear",
+    godx<-approx(mar1,px, n = ngx, method = "linear",
                  yleft = min(px), yright = max(px))
     cem.dens<-kcde(simv,gridsize=200, tail.flag = "upper.tail",xmin=c(min(simv[,1]),min(simv[,2])),xmax=c(max(godx$x),max(simv[,2])))
 
