@@ -131,7 +131,10 @@ Margins.mod<-function(tr1,tr2,u)
   plot(pxfp,u1b)
   plot(pyfp,u2b)
 
-  kk<-data.frame(pxf,pyf)
+  kk<-data.frame(pxfp,pyfp)
+  uu<-data.frame(u1b,u2b)
+
+  return(list(kk,uu))
 }
 
 

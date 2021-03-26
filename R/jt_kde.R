@@ -85,8 +85,8 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
 
   xFrechet<--1/log(px)
   yFrechet<--1/log(py)
-  ModelHugo_file=paste0(getwd(),"/LF/BveLTDep.R")
-  source (ModelHugo_file)
+  # ModelHugo_file=paste0(getwd(),"/LF/BveLTDep.R")
+  # source (ModelHugo_file)
   if(vtau<0)q0=0.9
   qq<-c()
   cm<-c()
@@ -95,7 +95,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA)
   qc<-.95
   rq0<-seq(0.75,0.95,by=0.01)
   for(q0 in rq0){
-    estims<-try(BveLTDep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='pl',marg.inf=T),silent = T)
+    estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='pl',marg.inf=T),silent = T)
     qd<-try((estims$par[2]),silent=T)
     cd<-try((estims$chiCIs),silent=T)
     cc<-try((estims$chi),silent=T)
