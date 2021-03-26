@@ -15,6 +15,7 @@
 #' @return Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
 #' @importFrom stats approx cor.test na.omit optim
 #'          predict qchisq qnorm quantile rnorm spline uniroot
+#' @import ks
 
 JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,mar1,mar2,px,py,interh=NA){
 

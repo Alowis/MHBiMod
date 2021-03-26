@@ -38,8 +38,8 @@ AnalogSel<-function(u2){
 #' @return pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
 Margins.mod<-function(tr1,tr2,u)
 {
-  th1=quantile(u[,1],tr1)
-  th2=quantile(u[,2],tr2)
+  th1=quantile(u[,1],tr1,na.rm = T)
+  th2=quantile(u[,2],tr2,na.rm = T)
 
   idr<-u[which(u[,2]>th2),2]
 
