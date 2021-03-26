@@ -355,8 +355,8 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb"){
     ngx=10000
 
 
-    godx<-approx(u1b,pxfp, n = ngx, method = "linear",
-                 yleft = min(pxfp), yright = max(pxfp))
+    godx<-approx(u1b,px, n = ngx, method = "linear",
+                 yleft = min(px), yright = max(px))
     cem.dens<-kcde(simv,gridsize=200, tail.flag = "upper.tail",xmin=c(min(simv[,1]),min(simv[,2])),xmax=c(max(godx$x),max(simv[,2])))
 
 
@@ -365,7 +365,7 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb"){
     lesy<-cem.dens$eval.points[[2]]
 
 
-    lexp<-approx(godx$x, godx$y, xout = lesx, method = "linear",yleft = min(pxfp),yright = max(pxfp), rule = 1)$y
+    lexp<-approx(godx$x, godx$y, xout = lesx, method = "linear",yleft = min(px),yright = max(px), rule = 1)$y
     ale<-jesus
     for (k in 1:length(lesy)){
       for (j in 1:length(lesx)){
