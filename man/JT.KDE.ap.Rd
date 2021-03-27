@@ -11,6 +11,7 @@ JT.KDE.ap(
   beta,
   vtau,
   devplot = F,
+  kk,
   mar1,
   mar2,
   px,

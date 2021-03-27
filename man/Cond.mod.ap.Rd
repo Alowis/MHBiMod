@@ -4,7 +4,19 @@
 \alias{Cond.mod.ap}
 \title{Fit bivariate conditional extremes model (from Heffernan and Tawn, 2004 and texmex R package)}
 \usage{
-Cond.mod.ap(u2, tr1, tr2, tsim, num.sim, pobj = 0.001, interh = "comb")
+Cond.mod.ap(
+  u2,
+  tr1,
+  tr2,
+  tsim,
+  num.sim,
+  pobj = 0.001,
+  interh = "comb",
+  mar1,
+  mar2,
+  px,
+  py
+)
 }
 \arguments{
 \item{u2}{Two column data frame}

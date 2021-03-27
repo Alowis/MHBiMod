@@ -1,4 +1,5 @@
-
+#' Creates level curve for conditional extremes model (adapted from the function jointExceedanceCurve
+#' of the texmex package)
 JointExceedanceCurve <- function(Sample, ExceedanceProb,...) {
   theCall <- match.call()
   UseMethod("JointExceedanceCurve", Sample)
@@ -23,7 +24,7 @@ JointExceedanceCurve.mexMC <- function(Sample, ExceedanceProb,n=50,x=NULL,which=
   Sample <- as.matrix(S)
   Sample <- Sample[!is.na(Sample[,1]),]
   Sample <- Sample[!is.na(Sample[,2]),]
-  
+
   s <- calcJointExceedanceCurve(Sample,ExceedanceProb,n,x)
   names(s) <- names(S)
   attr(s,"ExceedanceProb") <- ExceedanceProb
@@ -47,7 +48,7 @@ JointExceedanceCurve.predict.mex <- function(Sample, ExceedanceProb,n=200,x=NULL
     S <- Sample$replicate[[ids]][,which]
     Sample1 <- as.matrix(S)
     if(ExceedanceProb > CondExceedanceProb) stop("ExceedanceProb must be less than the probability of exceeding the threshold used for importance sampling in the call to predict")
-    
+
     s <- calcJointExceedanceCurve(Sample1,ExceedanceProb/CondExceedanceProb,n,x)
     names(s) <- names(S)
     attr(s,"ExceedanceProb") <- ExceedanceProb
@@ -73,7 +74,7 @@ JointExceedanceCurve.predict.mex <- function(Sample, ExceedanceProb,n=200,x=NULL
 }
   # Sample <- as.matrix(S)
   # if(ExceedanceProb > CondExceedanceProb) stop("ExceedanceProb must be less than the probability of exceeding the threshold used for importance sampling in the call to predict")
-  # 
+  #
   # s <- calcJointExceedanceCurve(Sample,ExceedanceProb/CondExceedanceProb,n,x)
   # names(s) <- names(S)
   # attr(s,"ExceedanceProb") <- ExceedanceProb
@@ -83,7 +84,7 @@ JointExceedanceCurve.predict.mex <- function(Sample, ExceedanceProb,n=200,x=NULL
 calcCondExceedanceCurve  <- function(Sample,condex,ExceedanceProb,n=50,x=NULL,w) {
   # mx, my are marginal upper limits
   # px, py are plotting points
-  
+
   mx <- quantile(Sample[,1],1-ExceedanceProb)
   my <- quantile(Sample[,2],1-ExceedanceProb)
   if(is.null(x)){
@@ -98,7 +99,7 @@ calcCondExceedanceCurve  <- function(Sample,condex,ExceedanceProb,n=50,x=NULL,w)
   if(w==1)condexprob<-1-condex+(sapply(pxx,function(pxx){(mean(as < pxx))})*condex)
   if(w==2)condexprob<-sapply(pxx,function(pxx){(mean(as > pxx))})
   ixd<-seq(1,length(pxx))
-  
+
   f <- function(z,x,y) {
     sapply(z,function(z){
       g <- function(w) mean(x > z & y > w)/(1-condex+mean(x<z)*condex) - ExceedanceProb
@@ -111,7 +112,7 @@ calcCondExceedanceCurve  <- function(Sample,condex,ExceedanceProb,n=50,x=NULL,w)
     }
     )
   }
-  
+
   #calculate curve values at plotting points
   if(w==1)cx <- f(px,Sample[,1],Sample[,2])
   if(w==2)cx <- f(px,Sample[,2],Sample[,1])
@@ -133,7 +134,7 @@ calcCondExceedanceCurve  <- function(Sample,condex,ExceedanceProb,n=50,x=NULL,w)
 calcJointExceedanceCurve  <- function(Sample,ExceedanceProb,n=50,x=NULL) {
   # mx, my are marginal upper limits
   # px, py are plotting points
-  
+
   mx <- quantile(Sample[,1],1-ExceedanceProb)
   my <- quantile(Sample[,2],1-ExceedanceProb)
   if(is.null(x)){
@@ -142,7 +143,7 @@ calcJointExceedanceCurve  <- function(Sample,ExceedanceProb,n=50,x=NULL) {
   } else {
     px <- x
   }
-  
+
   f <- function(z,x,y) {
     sapply(z,function(z){
       g <- function(w) mean(x > z & y > w) - ExceedanceProb
@@ -155,7 +156,7 @@ calcJointExceedanceCurve  <- function(Sample,ExceedanceProb,n=50,x=NULL) {
     }
     )
   }
-  
+
   #calculate curve values at plotting points
   cx <- f(px,Sample[,1],Sample[,2])
   if(is.null(x)){

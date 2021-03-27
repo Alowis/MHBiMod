@@ -186,7 +186,7 @@ densi.curv.em<-function(kdetab,lines,tl,lines2){
 #' @param copi a copula function with the parameters fitted to the bivariate dataset
 #' @export
 #' @return density for each points (couple x,y) along the level curves for copulae
-densi.curv.cop<-function(lines, copi){
+densi.curv.cop<-function(lines, copi,pxf,pyf){
   linep<-lines
   linep[,1]<-spline(u[,1],pxf, n = 300, method = "fmm",
                     xmin = min(lines[,1]), xmax = max(lines[,1]), ties = mean,xout=lines[,1])$y

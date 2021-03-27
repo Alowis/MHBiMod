@@ -208,10 +208,10 @@ curve.funct.b<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
     ymax=0.99
   }
   ngx=10000
-  godx<-spline(pxfp,mar1, n = ngx, method = "natural",
+  godx<-spline(pxf,mar1, n = ngx, method = "natural",
                xmin = xmin, xmax = xmax, ties = mean)
 
-  gody<-spline(pyfp,mar2, n = ngx, method = "natural",
+  gody<-spline(pyf,mar2, n = ngx, method = "natural",
                xmin = ymin, xmax = ymax, ties = mean)
 
   coxi<-approx(godx$y,godx$x, n = ng, method = "linear",
