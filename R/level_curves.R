@@ -10,11 +10,14 @@
 #' @param pobje probability of the level curve to be modeled
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
+#' @param coco a copula function from the following: GHcop,NORMcop,FGMcop,GLcop
+#' @param c1 the parameter of the copula
+#' @importFrom copBasic surfuncCOP
 #' @export
 #' @return Level curves for a given joint probability
 #'
 
-curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
+curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1){
   if(pos=="l"){
     xmin=0
     xmax=0.9
@@ -100,11 +103,13 @@ curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
 #' @param ng number of points to be interpolated
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #' @param logm log tranformation of the margins '\code{T}'of '\code{F}'
+#' @param coco a copula function from the following: GHcop,NORMcop,FGMcop,GLcop
+#' @param c1 the parameter of the copula
 #' @export
+#' @importFrom copBasic surfuncCOP
 #' @return Level curves for a given joint probability
-#'
 
-curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F){
+curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F,coco,c1){
   if(logm==T) {
     mar1<-log(mar1)
     mar2<-log(mar2)
@@ -182,13 +187,16 @@ curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F){
 #' @param pos part of the curve to be modelled '\code{l}' for the left part, '\code{m}' for the middle part and '\code{r}' for the right part
 #' @param pobje probability of the level curve to be modelled
 #' @param ng number of points to be interpolated
+#' @param coco a copula function from the following: GHcop,NORMcop,FGMcop,GLcop
+#' @param c1 the parameter of the copula
 #' @param inter type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #' @export
 #' @return Level curves for a given joint probability
 #' @importFrom grDevices contourLines
+#' @importFrom copBasic surfuncCOP
 #' @importFrom graphics abline contour segments
 
-curve.funct.b<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb"){
+curve.funct.b<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1){
   if(pos=="l"){
     xmin=0
     xmax=0.99

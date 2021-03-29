@@ -10,7 +10,7 @@ Cond.mod.ap(
   tr2,
   tsim,
   num.sim,
-  pobj = 0.001,
+  pobj,
   interh = "comb",
   mar1,
   mar2,

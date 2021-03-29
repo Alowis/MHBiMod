@@ -4,7 +4,18 @@
 \alias{curve.funct.b}
 \title{Create level curves for copulae and other models}
 \usage{
-curve.funct.b(pxf, pyf, mar1, mar2, pos, pobje, ng = 100, inter = "comb")
+curve.funct.b(
+  pxf,
+  pyf,
+  mar1,
+  mar2,
+  pos,
+  pobje,
+  ng = 100,
+  inter = "comb",
+  coco,
+  c1
+)
 }
 \arguments{
 \item{pxf}{Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)}
@@ -22,6 +33,10 @@ curve.funct.b(pxf, pyf, mar1, mar2, pos, pobje, ng = 100, inter = "comb")
 \item{ng}{number of points to be interpolated}
 
 \item{inter}{type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,}
+
+\item{coco}{a copula function from the following: GHcop,NORMcop,FGMcop,GLcop}
+
+\item{c1}{the parameter of the copula}
 }
 \value{
 Level curves for a given joint probability

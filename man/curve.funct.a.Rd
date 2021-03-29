@@ -13,7 +13,9 @@ curve.funct.a(
   pobje,
   ng = 100,
   inter = "comb",
-  logm = F
+  logm = F,
+  coco,
+  c1
 )
 }
 \arguments{
@@ -34,6 +36,10 @@ curve.funct.a(
 \item{inter}{type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,}
 
 \item{logm}{log tranformation of the margins '\code{T}'of '\code{F}'}
+
+\item{coco}{a copula function from the following: GHcop,NORMcop,FGMcop,GLcop}
+
+\item{c1}{the parameter of the copula}
 }
 \value{
 Level curves for a given joint probability

@@ -4,6 +4,8 @@
 #'
 #' @param u2 Two column data frame
 #' @export
+#' @importFrom texmex chi
+#' @importFrom ggplot2 ggplot
 #' @return list of extremal dependence measures correponding to potential analogous
 AnalogSel<-function(u2){
   chiest<-chi(u2,qlim=c(0.75,0.92),nq=100)
@@ -34,6 +36,7 @@ AnalogSel<-function(u2){
 #' @param u Two column data frame
 #' @param tr1 extreme threshold for first variable
 #' @param tr2 extreme threshold for second variable
+#' @importFrom texmex evm
 #' @export
 #' @return pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
 Margins.mod<-function(tr1,tr2,u)

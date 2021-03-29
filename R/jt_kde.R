@@ -18,8 +18,10 @@
 #'          predict qchisq qnorm quantile rnorm spline uniroot
 #' @import ks
 #' @import zoo
-#' @importFrom zoo na.approx
 #' @import lattice
+#' @importFrom zoo na.approx
+#' @importFrom viridis viridis
+
 
 JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=NA){
 
@@ -268,7 +270,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
     levelplot(matjt ~ lon * lat, data=grid, cuts=20, pretty=T,contour=T)
     contour(gridx,gridy,matjt,levels=0.001)
 
-    sh<-contourLines(gridx,gridy,matjt,levels=upobj)
+    sh<-contourLines(gridx,gridy,matjt,levels=pobj)
     obx<-c()
     oby<-c()
     for (ssh in 1:length(sh)){
@@ -298,10 +300,11 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
 #' @param py Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
+#' @importFrom texmex mex
 #' @export
 #' @return Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures
 
-Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb",mar1,mar2,px,py){
+Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py){
   names(u2)= c("V1","V2")
   thresh1 <- tr1
   thresh2 <- tr2
@@ -382,7 +385,7 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb",mar1,mar2
     plot(u2,xlim=c(0,40),ylim=c(0,300))
     contour(lesx,lesy,ale,levels = c(0.1),col=3,ylim=c(0,200),add=T)
 
-    sh2<-contourLines(lesx,lesy,ale,levels=upobj/(1-tsim))
+    sh2<-contourLines(lesx,lesy,ale,levels=pobj/(1-tsim))
     obx<-c()
     oby<-c()
     for (ssh in 1:length(sh2)){

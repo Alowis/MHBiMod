@@ -191,6 +191,7 @@ print.jointExcCurve <- function(x, ...){
 
 #' @rdname JointExceedanceCurve
 #' @param ... Further aguments to be passed to methods
+#' @importFrom ggplot2 geom_line
 geom_jointExcCurve <- function(x,...){
   dat <- as.data.frame(cbind(x[[1]],x[[2]]))
   colnames(dat) <- attributes(x)$names
