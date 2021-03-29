@@ -10,6 +10,7 @@
 #' @param py Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
+#' @param kk uniform margins of the original data
 #' @param interh type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #' @export
 #' @return Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
@@ -293,6 +294,10 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
 #' @param num.sim The number of simulated observations to be generated for prediction (from texmex)
 #' @param pobj objective joint return period modelled with the conditional extremes model
 #' @param interh type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
+#' @param px Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)
+#' @param py Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
+#' @param mar1 Values of the first margin
+#' @param mar2 Values of the second margin
 #' @export
 #' @return Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures
 
@@ -395,9 +400,7 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj=0.001,interh="comb",mar1,mar2
     j1 <- JointExceedanceCurve(mex.pred,pobj,n=100,meth="J")
     j2 <- JointExceedanceCurve(mex.pred2,pobj,n=100,meth="J")
     summary(mex.pred2)
-    #For confidence interval bootstrap
-    # jb<-JointExceedanceCurve(mex.pred$replicates[[1]] ,pobj1,n=10,which=1)
-    # jbo<-data.frame(jb[[1]],jb[[2]])
+
     ##############################
 
 

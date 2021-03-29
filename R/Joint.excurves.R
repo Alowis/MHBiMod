@@ -1,5 +1,9 @@
 #' Creates level curve for conditional extremes model (adapted from the function jointExceedanceCurve
 #' of the texmex package)
+
+
+#' @param Sample 2 column data frame
+#' @param ExceedanceProb Probablilty of exceedance
 JointExceedanceCurve <- function(Sample, ExceedanceProb,...) {
   theCall <- match.call()
   UseMethod("JointExceedanceCurve", Sample)
@@ -33,6 +37,10 @@ JointExceedanceCurve.mexMC <- function(Sample, ExceedanceProb,n=50,x=NULL,which=
 
 #' @rdname JointExceedanceCurve
 #' @export
+#' @param n number of points on the curve
+#' @param x uniform margin to be provided
+#' @param boots boolean, is bootstrap happening
+#' @param meth method for curve drawing. J for joint exceedance and C for conditional exceedance
 #' @method JointExceedanceCurve predict.mex
 JointExceedanceCurve.predict.mex <- function(Sample, ExceedanceProb,n=200,x=NULL,boots=F,which=1:2,meth="J",...) {
   CondExceedanceProb <- 1-Sample$pqu
@@ -72,18 +80,13 @@ JointExceedanceCurve.predict.mex <- function(Sample, ExceedanceProb,n=200,x=NULL
   }
 
 }
-  # Sample <- as.matrix(S)
-  # if(ExceedanceProb > CondExceedanceProb) stop("ExceedanceProb must be less than the probability of exceeding the threshold used for importance sampling in the call to predict")
-  #
-  # s <- calcJointExceedanceCurve(Sample,ExceedanceProb/CondExceedanceProb,n,x)
-  # names(s) <- names(S)
-  # attr(s,"ExceedanceProb") <- ExceedanceProb
-  # s
 
-
+#' @rdname JointExceedanceCurve
+#' @export
+#' @param condex conditional probability
+#' @param w conditional probability computation mode
+#' @param ... Further aguments to be passed to methods
 calcCondExceedanceCurve  <- function(Sample,condex,ExceedanceProb,n=50,x=NULL,w) {
-  # mx, my are marginal upper limits
-  # px, py are plotting points
 
   mx <- quantile(Sample[,1],1-ExceedanceProb)
   my <- quantile(Sample[,2],1-ExceedanceProb)
@@ -131,9 +134,10 @@ calcCondExceedanceCurve  <- function(Sample,condex,ExceedanceProb,n=50,x=NULL,w)
   res
 }
 
+#' @rdname JointExceedanceCurve
+#' @export
+#' @param ... Further aguments to be passed to methods
 calcJointExceedanceCurve  <- function(Sample,ExceedanceProb,n=50,x=NULL) {
-  # mx, my are marginal upper limits
-  # px, py are plotting points
 
   mx <- quantile(Sample[,1],1-ExceedanceProb)
   my <- quantile(Sample[,2],1-ExceedanceProb)
@@ -172,6 +176,9 @@ calcJointExceedanceCurve  <- function(Sample,ExceedanceProb,n=50,x=NULL) {
   res
 }
 
+
+#' @rdname JointExceedanceCurve
+#' @param ... Further aguments to be passed to methods
 print.jointExcCurve <- function(x, ...){
   P <- attributes(x)$ExceedanceProb
   cat("\n Estimated curve with constant joint exceedance probability equal to",P,"\n")
@@ -182,6 +189,8 @@ print.jointExcCurve <- function(x, ...){
 }
 
 
+#' @rdname JointExceedanceCurve
+#' @param ... Further aguments to be passed to methods
 geom_jointExcCurve <- function(x,...){
   dat <- as.data.frame(cbind(x[[1]],x[[2]]))
   colnames(dat) <- attributes(x)$names

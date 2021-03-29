@@ -14,6 +14,7 @@
 #' @keywords datasets
 #'
 #' @references Tilloy et al. (2020)
+"fire01meantemp"
 
 #'
 #'

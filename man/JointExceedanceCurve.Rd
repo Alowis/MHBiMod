@@ -5,6 +5,10 @@
 \alias{JointExceedanceCurve.default}
 \alias{JointExceedanceCurve.mexMC}
 \alias{JointExceedanceCurve.predict.mex}
+\alias{calcCondExceedanceCurve}
+\alias{calcJointExceedanceCurve}
+\alias{print.jointExcCurve}
+\alias{geom_jointExcCurve}
 \title{Creates level curve for conditional extremes model (adapted from the function jointExceedanceCurve
 of the texmex package)}
 \usage{
@@ -31,11 +35,35 @@ JointExceedanceCurve(Sample, ExceedanceProb, ...)
   meth = "J",
   ...
 )
+
+calcCondExceedanceCurve(Sample, condex, ExceedanceProb, n = 50, x = NULL, w)
+
+calcJointExceedanceCurve(Sample, ExceedanceProb, n = 50, x = NULL)
+
+\method{print}{jointExcCurve}(x, ...)
+
+geom_jointExcCurve(x, ...)
 }
 \arguments{
+\item{Sample}{2 column data frame}
+
+\item{ExceedanceProb}{Probablilty of exceedance}
+
 \item{...}{Further aguments to be passed to methods}
 
+\item{n}{number of points on the curve}
+
+\item{x}{uniform margin to be provided}
+
 \item{which}{Vector length two identifying which margins to use for joint exceedance curve estimation. Can be integer vector, giving column numbers of original data matrix, or character vector identifying variables by name (these must match column names in original data).}
+
+\item{boots}{boolean, is bootstrap happening}
+
+\item{meth}{method for curve drawing. J for joint exceedance and C for conditional exceedance}
+
+\item{condex}{conditional probability}
+
+\item{w}{conditional probability computation mode}
 }
 \description{
 Creates level curve for conditional extremes model (adapted from the function jointExceedanceCurve

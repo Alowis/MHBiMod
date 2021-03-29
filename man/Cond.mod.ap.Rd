@@ -32,6 +32,14 @@ Cond.mod.ap(
 \item{pobj}{objective joint return period modelled with the conditional extremes model}
 
 \item{interh}{type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,}
+
+\item{mar1}{Values of the first margin}
+
+\item{mar2}{Values of the second margin}
+
+\item{px}{Uniform values of the first margin with a mixed distribution (empirical below and gpd above a threshold)}
+
+\item{py}{Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)}
 }
 \value{
 Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures

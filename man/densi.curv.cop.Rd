@@ -4,12 +4,18 @@
 \alias{densi.curv.cop}
 \title{Compute the density of level curves for copulae models}
 \usage{
-densi.curv.cop(lines, copi)
+densi.curv.cop(lines, copi, pxf, pyf, u)
 }
 \arguments{
-\item{lines}{location of the objective level curve for which the deesnity needs to be estimated in the 2D space}
+\item{lines}{location of the objective level curve for which the density needs to be estimated in the 2D space}
 
 \item{copi}{a copula function with the parameters fitted to the bivariate dataset}
+
+\item{pxf}{uniform values of the 1st margin}
+
+\item{pyf}{uniform values of the 1st margin}
+
+\item{u}{original data}
 }
 \value{
 density for each points (couple x,y) along the level curves for copulae

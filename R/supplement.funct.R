@@ -182,11 +182,14 @@ densi.curv.em<-function(kdetab,lines,tl,lines2){
 #'
 #' Based on the density function of selected copula
 #'
-#' @param lines location of the objective level curve for which the deesnity needs to be estimated in the 2D space
+#' @param lines location of the objective level curve for which the density needs to be estimated in the 2D space
 #' @param copi a copula function with the parameters fitted to the bivariate dataset
+#' @param pxf uniform values of the 1st margin
+#' @param pyf uniform values of the 1st margin
+#' @param u original data
 #' @export
 #' @return density for each points (couple x,y) along the level curves for copulae
-densi.curv.cop<-function(lines, copi,pxf,pyf){
+densi.curv.cop<-function(lines, copi,pxf,pyf,u){
   linep<-lines
   linep[,1]<-spline(u[,1],pxf, n = 300, method = "fmm",
                     xmin = min(lines[,1]), xmax = max(lines[,1]), ties = mean,xout=lines[,1])$y

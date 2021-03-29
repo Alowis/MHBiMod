@@ -32,6 +32,8 @@ JT.KDE.ap(
 
 \item{devplot}{additional plots for development (significantly slows the function)}
 
+\item{kk}{uniform margins of the original data}
+
 \item{mar1}{Values of the first margin}
 
 \item{mar2}{Values of the second margin}
