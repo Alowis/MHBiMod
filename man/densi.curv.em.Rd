@@ -23,3 +23,8 @@ density for each points (couple x,y) along the level curves
 Based on a kernel density estimation of simulated points for conditional extremes and extrapolation of kde
 of the base curve for the joint tail model
 }
+\examples{
+  \dontrun{
+ltl<-densi.curv.em(jt.dens,ltlo, tl="l", ltl)
+}
+}

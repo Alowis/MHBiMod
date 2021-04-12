@@ -45,8 +45,33 @@ JT.KDE.ap(
 \item{interh}{type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,}
 }
 \value{
-Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
+a list containing the following:
+\itemize{
+\item levelcurve - data frame the objective containing level curve with a return level '\code{pobj}'
+\item wq0ri - matrix of the base level curve with a return level '\code{pbas}'
+\item etaJT - threshold dependent extremal dependence measure
+\item chiJT - threshold dependent coefficient of tail dependence
+}
 }
 \description{
 Fit bivariate joint tail model with Kernel density estimator (Adapted from Cooley et al., 2019)
+}
+\examples{
+  \dontrun{
+jtres<-JT.KDE.ap(u2=u2,pbas=0.01,pobj=upobj,beta=100,kk=kk,vtau=vtau,
+devplot=F,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
+plot(jtres$levelcurve)
+}
+}
+\references{
+Tilloy, A., Malamud, B.D., Winter, H. and Joly-Laugel, A., 2020.
+Evaluating the efficacy of bivariate extreme modelling approaches
+for multi-hazard scenarios. Natural Hazards and Earth System Sciences, 20(8), pp.2091-2117.
+
+Cooley, D., Thibaud, E., Castillo, F. and Wehner, M.F., 2019.
+A nonparametric method for producing isolines of bivariate exceedance probabilities.
+Extremes, 22(3), pp.373-390.
+}
+\seealso{
+\code{\link[texmex]{chi}}
 }

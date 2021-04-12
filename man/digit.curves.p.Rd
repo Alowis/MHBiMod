@@ -17,9 +17,25 @@ digit.curves.p(start, curve, nPoints, closed = TRUE)
 \item{closed}{Logical Whether the curve is closed (TRUE) or open (FALSE)}
 }
 \value{
-Function returns a matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve
+A matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve
 }
 \description{
 Creates homogeneous level curve for every model (adapted from the function digit.curves
 of the geomorph package)
+}
+\examples{
+x<-seq(0,30, length=200)
+y=90-x^2
+curve=data.frame(x,y)
+ltl<-digit.curves.p(start=curve[1,], curve=as.matrix(curve), nPoints=98, closed = FALSE)
+plot(ltl)
+}
+\references{
+Bookstein, F. J. 1997 Landmark Methods for Forms without Landmarks: Morphometrics of
+Group Differences in Outline Shape. Medical Image Analysis 1(3):225-243.
+
+Rohlf, F.J., 2015. The tps series of software. Hystrix 26(1):9-12.
+}
+\seealso{
+\code{\link[geomorph]{digit.curves}}
 }

@@ -11,7 +11,7 @@ AnalogSel(u2)
 \item{u2}{Two column data frame}
 }
 \value{
-list of extremal dependence measures correponding to potential analogous
+No return value, called for side effects
 }
 \description{
 Automatically select analaugous datasets from the 60 datasets created in Tilloy et al.(2020)

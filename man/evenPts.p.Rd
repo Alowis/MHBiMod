@@ -12,6 +12,10 @@ evenPts.p(x, n)
 \arguments{
 \item{x, n}{numeric vectors}
 }
+\value{
+A matrix of coordinates for nPoints equally spaced
+semilandmarks sampled along the curve in a normalized space
+}
 \description{
 basic function for spacing out curve points via linear interpolation (adapted from the function digit.curves
 of the geomorph package). The main different is that curves are normalized to allow an intercomaprison of confidence scores

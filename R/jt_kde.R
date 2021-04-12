@@ -13,7 +13,26 @@
 #' @param kk uniform margins of the original data
 #' @param interh type of hazard interrelation '\code{comb}' for compound and '\code{casc}' for cascade,
 #' @export
-#' @return Estimates of the level curve with the selected return period, the base level curve and threshold dependent extremal dependence measures
+#' @return a list containing the following:
+#' \itemize{
+#' \item levelcurve - data frame the objective containing level curve with a return level '\code{pobj}'
+#' \item wq0ri - matrix of the base level curve with a return level '\code{pbas}'
+#' \item etaJT - threshold dependent extremal dependence measure
+#' \item chiJT - threshold dependent coefficient of tail dependence
+#' }
+#' @seealso \code{\link[texmex]{chi}}
+#' @references Tilloy, A., Malamud, B.D., Winter, H. and Joly-Laugel, A., 2020.
+#' Evaluating the efficacy of bivariate extreme modelling approaches
+#' for multi-hazard scenarios. Natural Hazards and Earth System Sciences, 20(8), pp.2091-2117.
+#' @references Cooley, D., Thibaud, E., Castillo, F. and Wehner, M.F., 2019.
+#' A nonparametric method for producing isolines of bivariate exceedance probabilities.
+#' Extremes, 22(3), pp.373-390.
+#' @examples
+#'   \dontrun{
+#' jtres<-JT.KDE.ap(u2=u2,pbas=0.01,pobj=upobj,beta=100,kk=kk,vtau=vtau,
+#' devplot=F,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
+#' plot(jtres$levelcurve)
+#' }
 #' @importFrom stats approx cor.test na.omit optim
 #'          predict qchisq qnorm quantile rnorm spline uniroot
 #' @import ks
@@ -136,7 +155,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
   #Loop for asymptotic dependence
 
   if (!is.na(Chilow) & (Chilow<0.05 & etahat<0.75| etahat<0.6)){
-    print("AI")
+    message("Asymptotic Independence")
     bet=beta
     m1= 1- (wqxFrechet/(wqxFrechet+wqyFrechet))^bet
     m2<-1- (wqyFrechet/(wqxFrechet+wqyFrechet))^bet
@@ -169,7 +188,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
     for (sl in 1:length(s)){
 
       if (etahat<0.85& Chilow<0.02){
-        print("AI")
+        message("Asymptotic Independence")
         beta=200
         m1= 1- (wqxFrechet/(wqxFrechet+wqyFrechet))^beta
         m2<-1- (wqyFrechet/(wqxFrechet+wqyFrechet))^beta
@@ -300,9 +319,28 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
 #' @param py Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)
 #' @param mar1 Values of the first margin
 #' @param mar2 Values of the second margin
+#' @references Tilloy, A., Malamud, B.D., Winter, H. and Joly-Laugel, A., 2020.
+#' Evaluating the efficacy of bivariate extreme modelling approaches
+#' for multi-hazard scenarios. Natural Hazards and Earth System Sciences, 20(8), pp.2091-2117.
+#' @references Heffernan, J.E. and Tawn, J.A., 2004.
+#' A conditional approach for multivariate extreme values (with discussion).
+#' Journal of the Royal Statistical Society: Series B (Statistical Methodology), 66(3), pp.497-546.
+#' @examples
+#'   \dontrun{
+#' condexres<-Cond.mod.ap(u2=fire01meantemp,tr1,tr2,tsim=t.sim,num.sim=10000,
+#' pobj=0.001,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
+#' plot(condexres$jline)
+#' }
 #' @importFrom texmex mex
 #' @export
-#' @return Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures
+#' @return a list containing the following:
+#' \itemize{
+#' \item jline - data frame of the objective level curve with the selected return period '\code{pobj}'
+#' \item onlysim - data frame of simulated extreme data for the two variables
+#' \item etaHT - threshold dependent extremal dependence measure
+#' \item chiHT - threshold dependent coefficient of tail dependence
+#' }
+#' @seealso \code{\link[texmex]{mex}}
 
 Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py){
   names(u2)= c("V1","V2")
@@ -356,9 +394,6 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py
   plot(onlysim)
 
 
-#
-#   JointExcureve_file=paste0(getwd(),"/Multimodel_Sim/Joint_excurves.R")
-#   source (JointExcureve_file)
   pobj1=pobj/(1-tsim)
 
   if(interh=="casc"){
@@ -400,8 +435,8 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py
 
 
   if(interh=="comb"){
-    j1 <- JointExceedanceCurve(mex.pred,pobj,n=100,meth="J")
-    j2 <- JointExceedanceCurve(mex.pred2,pobj,n=100,meth="J")
+    j1 <- texmex::JointExceedanceCurve(mex.pred,pobj,n=100)
+    j2 <- texmex::JointExceedanceCurve(mex.pred2,pobj,n=100)
     summary(mex.pred2)
 
     ##############################

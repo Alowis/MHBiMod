@@ -6,7 +6,17 @@
 #' @param nPoints Numeric how many semilandmarks to place equidistantly along the curve (not counting beginning and end points)
 #' @param closed Logical Whether the curve is closed (TRUE) or open (FALSE)
 #' @export
-#' @return Function returns a matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve
+#' @seealso \code{\link[geomorph]{digit.curves}}
+#' @return A matrix of coordinates for nPoints equally spaced semilandmarks sampled along the curve
+#' @references Bookstein, F. J. 1997 Landmark Methods for Forms without Landmarks: Morphometrics of
+#' Group Differences in Outline Shape. Medical Image Analysis 1(3):225-243.
+#' @references Rohlf, F.J., 2015. The tps series of software. Hystrix 26(1):9-12.
+#' @examples
+#' x<-seq(0,30, length=200)
+#' y=90-x^2
+#' curve=data.frame(x,y)
+#' ltl<-digit.curves.p(start=curve[1,], curve=as.matrix(curve), nPoints=98, closed = FALSE)
+#' plot(ltl)
 
 digit.curves.p <- function(start, curve, nPoints, closed=TRUE){
   nPoints <- nPoints+2
@@ -33,10 +43,10 @@ digit.curves.p <- function(start, curve, nPoints, closed=TRUE){
 #' regardless of the input data.
 #' used in digit.curves.p
 #' @param x,n numeric vectors
+#' @return A matrix of coordinates for nPoints equally spaced
+#' semilandmarks sampled along the curve in a normalized space
 evenPts.p <- function(x, n){
   x <- as.matrix(na.omit(x))
-  # x<-round(x,6)
-  # x <-x[order(x[,1],-x[,2]),]
   at1<-scale(x[,1])
   at2<-scale(x[,2])
   x[,1]<-as.vector(scale(x[,1]))

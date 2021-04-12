@@ -14,7 +14,12 @@ Margins.mod(tr1, tr2, u)
 \item{u}{Two column data frame}
 }
 \value{
-pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
+a list of containing the following pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
+\itemize{
+\item uvar - data frame of pseudo observations (uniform margins) of the original data '\code{u}'
+\item uvar_ext - data frame of pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold) and 1000 extrapolated values
+\item val_est - data frame consiting of mix of original data '\code{u}'and 1000 extrapolated values
+}
 }
 \description{
 Compute uniform margins with Generalized Pareto Distribution above threshold

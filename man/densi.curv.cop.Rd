@@ -23,3 +23,11 @@ density for each points (couple x,y) along the level curves for copulae
 \description{
 Based on the density function of selected copula
 }
+\examples{
+  \dontrun{
+cli<-densi.curv.cop(cli,o,kk[,1],kk[,2],u=u2)
+}
+}
+\seealso{
+\code{\link[copula]{dcopula}}
+}

@@ -6,7 +6,10 @@
 #' @export
 #' @importFrom texmex chi
 #' @importFrom ggplot2 ggplot
-#' @return list of extremal dependence measures correponding to potential analogous
+#' @return No return value, called for side effects
+#' @examples
+#' data(porto)
+#' AnalogSel(fire01meantemp)
 AnalogSel<-function(u2){
   chiest<-chi(u2,qlim=c(0.75,0.92),nq=100)
   ggplot(chiest)
@@ -38,7 +41,20 @@ AnalogSel<-function(u2){
 #' @param tr2 extreme threshold for second variable
 #' @importFrom texmex evm
 #' @export
-#' @return pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
+#' @return a list of containing the following pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold)
+#' \itemize{
+#' \item uvar - data frame of pseudo observations (uniform margins) of the original data '\code{u}'
+#' \item uvar_ext - data frame of pseudo observations (uniform margins) with a mixed distribution (empirical below and gpd above a threshold) and 1000 extrapolated values
+#' \item val_est - data frame consiting of mix of original data '\code{u}'and 1000 extrapolated values
+#' }
+#' @examples
+#' data(porto)
+#' tr1=0.9
+#' tr2=0.9
+#' fire01meantemp=na.omit(fire01meantemp)
+#' u=fire01meantemp
+#' marmod=Margins.mod(tr1,tr2,u=fire01meantemp)
+
 Margins.mod<-function(tr1,tr2,u)
 {
   th1=quantile(u[,1],tr1,na.rm = T)
@@ -154,6 +170,10 @@ Margins.mod<-function(tr1,tr2,u)
 #' @param tl indicator which model's density have been estimated in the kdetab, '\code{l}' the joint tail model, '\code{h}' for the conditional extremes model
 #' @param lines2 location of the base level curve (only used when tl=l)
 #' @export
+#' @examples
+#'   \dontrun{
+#' ltl<-densi.curv.em(jt.dens,ltlo, tl="l", ltl)
+#' }
 #' @return density for each points (couple x,y) along the level curves
 densi.curv.em<-function(kdetab,lines,tl,lines2){
   densim<-c()
@@ -162,7 +182,6 @@ densi.curv.em<-function(kdetab,lines,tl,lines2){
     pwin<-as.matrix(lines[stro,])
     onarray<-aba[which(abs(kdetab$eval.points[[1]]-pwin[1])==min(abs(kdetab$eval.points[[1]]-pwin[1]))),which(abs(kdetab$eval.points[[2]]-pwin[2])==min(abs(kdetab$eval.points[[2]]-pwin[2])))]
     if(length(onarray)==0)onarray<-aba[which(round(kdetab$eval.points[[1]],1)==round(pwin[1],1)),which(round(kdetab$eval.points[[2]],1)==round(pwin[2],1))]
-    if(length(onarray)==0)print(stro)
     if(length(onarray)>1)onarray=mean(onarray)
     densim<-c(densim,onarray)
 
@@ -192,6 +211,12 @@ densi.curv.em<-function(kdetab,lines,tl,lines2){
 #' @param u original data
 #' @export
 #' @return density for each points (couple x,y) along the level curves for copulae
+#' @examples
+#'   \dontrun{
+#' cli<-densi.curv.cop(cli,o,kk[,1],kk[,2],u=u2)
+#' }
+#' @seealso \code{\link[copula]{dcopula}}
+
 densi.curv.cop<-function(lines, copi,pxf,pyf,u){
   linep<-lines
   linep[,1]<-spline(u[,1],pxf, n = 300, method = "fmm",
@@ -207,3 +232,5 @@ densi.curv.cop<-function(lines, copi,pxf,pyf,u){
   names(shuba)=c("x","y","dens")
   shuba
 }
+
+utils::globalVariables(c("gpd"))

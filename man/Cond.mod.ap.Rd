@@ -42,8 +42,33 @@ Cond.mod.ap(
 \item{py}{Uniform values of the second margin with a mixed distribution (empirical below and gpd above a threshold)}
 }
 \value{
-Estimates of the level curve with the selected return period, simulated extreme data and threshold dependent extremal dependence measures
+a list containing the following:
+\itemize{
+\item jline - data frame of the objective level curve with the selected return period '\code{pobj}'
+\item onlysim - data frame of simulated extreme data for the two variables
+\item etaHT - threshold dependent extremal dependence measure
+\item chiHT - threshold dependent coefficient of tail dependence
+}
 }
 \description{
 Fit bivariate conditional extremes model (from Heffernan and Tawn, 2004 and texmex R package)
+}
+\examples{
+  \dontrun{
+condexres<-Cond.mod.ap(u2=fire01meantemp,tr1,tr2,tsim=t.sim,num.sim=10000,
+pobj=0.001,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
+plot(condexres$jline)
+}
+}
+\references{
+Tilloy, A., Malamud, B.D., Winter, H. and Joly-Laugel, A., 2020.
+Evaluating the efficacy of bivariate extreme modelling approaches
+for multi-hazard scenarios. Natural Hazards and Earth System Sciences, 20(8), pp.2091-2117.
+
+Heffernan, J.E. and Tawn, J.A., 2004.
+A conditional approach for multivariate extreme values (with discussion).
+Journal of the Royal Statistical Society: Series B (Statistical Methodology), 66(3), pp.497-546.
+}
+\seealso{
+\code{\link[texmex]{mex}}
 }

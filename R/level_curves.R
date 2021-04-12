@@ -55,7 +55,6 @@ curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1){
 
   repeat{
     idx<-which(diff(coxi)<=0)
-    print("cl")
     if(length(idx)<1){
       break
     }
@@ -64,7 +63,6 @@ curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1){
   }
   repeat{
     idy<-which(diff(coyi)<=0)
-    print("cl")
     if(length(idy)<1){
       break
     }
@@ -141,7 +139,6 @@ curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F,coc
   coyi<-coyi$x
   repeat{
     idx<-which(diff(coxi)<=0)
-    # print("cl")
     if(length(idx)<1){
       break
     }
@@ -235,7 +232,6 @@ curve.funct.b<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1)
 
   repeat{
     idx<-which(diff(coxi)<=0)
-    # print("cl")
     if(length(idx)<1){
       break
     }
