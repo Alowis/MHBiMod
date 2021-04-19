@@ -107,8 +107,8 @@ curve.funct<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1){
 #' @importFrom copBasic surfuncCOP
 #' @return Level curves for a given joint probability
 
-curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F,coco,c1){
-  if(logm==T) {
+curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=FALSE,coco,c1){
+  if(logm==TRUE) {
     mar1<-log(mar1)
     mar2<-log(mar2)
   }
@@ -168,7 +168,7 @@ curve.funct.a<-function(px,py,mar1,mar2,pos,pobje,ng=100,inter="comb",logm=F,coc
   clf<-contourLines(coxi,coyi, acp3, levels = pobje)
   if(is.list(clf)|length(clf)>1){
     clf<-as.matrix(data.frame(clf[[1]]$x,clf[[1]]$y))} else{clf<-"error"}
-  if(logm==T) clf<-exp(clf)
+  if(logm==TRUE) clf<-exp(clf)
   return(clf)
 
 }
@@ -259,7 +259,7 @@ curve.funct.b<-function(pxf,pyf,mar1,mar2,pos,pobje,ng=100,inter="comb",coco,c1)
     }
   }
   grid <- expand.grid(lon=godx, lat=gody)
-  levelplot(acp3 ~ lon * lat, data=grid, cuts=20, pretty=T)
+  levelplot(acp3 ~ lon * lat, data=grid, cuts=20, pretty=TRUE)
   cl2<-contourLines(coxi,coyi, acp3, levels = pobje)
   if(length(cl2)>0){
     cl2<-as.matrix(data.frame(cl2[[1]]$x,cl2[[1]]$y))} else{cl2<-NA}

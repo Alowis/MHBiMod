@@ -59,7 +59,7 @@ Fit bivariate joint tail model with Kernel density estimator (Adapted from Coole
 \examples{
   \dontrun{
 jtres<-JT.KDE.ap(u2=u2,pbas=0.01,pobj=upobj,beta=100,kk=kk,vtau=vtau,
-devplot=F,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
+devplot=FALSE,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
 plot(jtres$levelcurve)
 }
 }

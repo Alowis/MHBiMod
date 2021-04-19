@@ -26,8 +26,8 @@ digit.curves.p <- function(start, curve, nPoints, closed=TRUE){
   if(nPoints > (nCurvePoints - 1)) {
     if((nCurvePoints - 1) == 1) nPoints = 1
     if((nCurvePoints - 1) > 1) nPoints = nCurvePoints - 2
-    cat("\nWarning: because the number of desired points exceeds the number of curve points,")
-    cat("\nthe number of points will be truncated to", nPoints, "\n\n")
+    message("\nWarning: because the number of desired points exceeds the number of curve points,")
+    message("\nthe number of points will be truncated to", nPoints, "\n\n")
   }
   start <- as.numeric(start)
   if(!setequal(start, curve[1,])) curve <- rbind(start, curve)

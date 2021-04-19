@@ -17,3 +17,7 @@ No return value, called for side effects
 Automatically select analaugous datasets from the 60 datasets created in Tilloy et al.(2020)
 see: https://nhess.copernicus.org/articles/20/2091/2020/nhess-20-2091-2020.html for more detaila
 }
+\examples{
+data(porto)
+AnalogSel(fire01meantemp)
+}

@@ -13,7 +13,7 @@ curve.funct.a(
   pobje,
   ng = 100,
   inter = "comb",
-  logm = F,
+  logm = FALSE,
   coco,
   c1
 )

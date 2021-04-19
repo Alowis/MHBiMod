@@ -28,7 +28,7 @@ AnalogSel<-function(u2){
   et<-c(etalist[which(etalist>=etint[1]&etalist<=etint[3])])
   ct<-c(chilist[which(chilist>=chint[1]&chilist<=chint[3])])
   if(chint[1]>0.1)et<-c()
-  cat(paste(c("analogous datasets to be tested: \n eta = ",et," \n chi = ",ct),collapse= " "))
+  message(paste(c("analogous datasets to be tested: \n eta = ",et," \n chi = ",ct),collapse= " "))
   AnSel<-list(et=et,ct=ct)
 }
 

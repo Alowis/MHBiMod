@@ -24,3 +24,11 @@ a list of containing the following pseudo observations (uniform margins) with a 
 \description{
 Compute uniform margins with Generalized Pareto Distribution above threshold
 }
+\examples{
+data(porto)
+tr1=0.9
+tr2=0.9
+fire01meantemp=na.omit(fire01meantemp)
+u=fire01meantemp
+marmod=Margins.mod(tr1,tr2,u=fire01meantemp)
+}

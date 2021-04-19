@@ -30,7 +30,7 @@
 #' @examples
 #'   \dontrun{
 #' jtres<-JT.KDE.ap(u2=u2,pbas=0.01,pobj=upobj,beta=100,kk=kk,vtau=vtau,
-#' devplot=F,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
+#' devplot=FALSE,mar1=uu[,1],mar2=uu[,2],px=pp[,1],py=pp[,2],interh=interh)
 #' plot(jtres$levelcurve)
 #' }
 #' @importFrom stats approx cor.test na.omit optim
@@ -63,7 +63,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
   pxe<-approx(godx$x, godx$y, xout = lox, method = "linear",yleft = min(px),yright = max(px), rule = 1)$y
   pye<-approx(gody$x, gody$y, xout = loy, method = "linear",yleft = min(py),yright = max(py), rule = 1)$y
 
-  if(devplot==T){
+  if(devplot==TRUE){
     plot(aa,cont = c(0.05,0.1),display="filled.contour" ,col=viridis(10))
 
   }
@@ -120,10 +120,10 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
   qc<-.95
   rq0<-seq(0.75,0.95,by=0.01)
   for(q0 in rq0){
-    estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=T),silent = T)
-    qd<-try((estims$par[2]),silent=T)
-    cd<-try((estims$chiCIs),silent=T)
-    cc<-try((estims$chi),silent=T)
+    estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=TRUE),silent = T)
+    qd<-try((estims$par[2]),silent=TRUE)
+    cd<-try((estims$chiCIs),silent=TRUE)
+    cc<-try((estims$chi),silent=TRUE)
 
     if(is.numeric(qd)){
       qq<-c(qq,qd)
@@ -142,15 +142,15 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
   sh<-which(sumd<=-0.02|sumd>=0.02 )[1]
   q0<-rq0[sh-1]
   plot(sumd)
-  estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=T),silent = T)
+  estims<-try(Bv.LT.Dep (data= kk,mod.thresh.u = q0,crit.lev.u = qc,sig.lev=0.05,ci.meth='se',marg.inf=TRUE),silent = T)
   chat=NA
   etahat=NA
   Chilow=NA
   Chimed=NA
-  try(chat<-estims$par[1],silent=T)
-  try(etahat<-estims$par[2],silent=T)
-  try(Chilow<-estims$chiCIs[1],silent=T)
-  try(Chimed<-estims$chi,silent=T)
+  try(chat<-estims$par[1],silent=TRUE)
+  try(etahat<-estims$par[2],silent=TRUE)
+  try(Chilow<-estims$chiCIs[1],silent=TRUE)
+  try(Chimed<-estims$chi,silent=TRUE)
 
   #Loop for asymptotic dependence
 
@@ -232,8 +232,8 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
       ltl1<-ltl
       ltl2<-ltl
       if (pobj[sl]>0.0000001){
-        gridx<-(seq(min(ltl[,1],na.rm=T),max(mar1),length.out=100))
-        gridy<-(seq(min(ltl[,2],na.rm=T),max(mar2),length.out=100))
+        gridx<-(seq(min(ltl[,1],na.rm=TRUE),max(mar1),length.out=100))
+        gridy<-(seq(min(ltl[,2],na.rm=TRUE),max(mar2),length.out=100))
         ltl1[,1]<-approx(ltl[,1], ltl[,2], xout = gridx, method = "linear", rule = 1)$x
         ltl1[,2]<-approx(ltl[,1], ltl[,2], xout = gridx, method = "linear", rule = 1)$y
 
@@ -252,8 +252,8 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
 
     tg=50
 
-    gridx<-seq(min(wqobjf[,1],na.rm=T),max(mar1),length.out=tg)
-    gridy<-seq(min(wqobjf[,2],na.rm=T),max(mar2),length.out=tg)
+    gridx<-seq(min(wqobjf[,1],na.rm=TRUE),max(mar1),length.out=tg)
+    gridy<-seq(min(wqobjf[,2],na.rm=TRUE),max(mar2),length.out=tg)
 
 
     pxg<-approx(mar1, px, xout = gridx, method = "linear",yleft = min(px),yright = max(px), rule = 1)$y
@@ -265,7 +265,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
       for (j in 1:(length(pyg)-1)){
         coly<-wqobjf[colx,3][which(wqobjf[colx,2]>gridy[j] & wqobjf[colx,2]<=gridy[j+1])]
         if(length(coly)==0){matjt[j,k]=NA}else{
-          matjt[k,j]=mean(coly,na.rm=T)/(1-pxg[k])}
+          matjt[k,j]=mean(coly,na.rm=TRUE)/(1-pxg[k])}
       }
     }
 
@@ -274,7 +274,7 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
       for (j in 1:(length(pyg)-1)){
         coly<-wqobjf[colx,3][which(wqobjf[colx,1]>gridx[j] & wqobjf[colx,1]<=gridx[j+1])]
         if(length(coly)==0){matjt[j,k]=matjt[j,k]}else{
-          matjt[j,k]=mean(coly,na.rm=T)/(1-pxg[j])}
+          matjt[j,k]=mean(coly,na.rm=TRUE)/(1-pxg[j])}
       }
     }
 
@@ -282,11 +282,11 @@ JT.KDE.ap<-function(u2,pbas ,pobj,beta,vtau,devplot=F,kk,mar1,mar2,px,py,interh=
     grid <- expand.grid(lon=gridx, lat=gridy)
 
 
-    for (nap in 1: length(pxg)){ matjt[,nap]<-na.approx(matjt[,nap],maxgap = 5,na.rm=F)}
+    for (nap in 1: length(pxg)){ matjt[,nap]<-na.approx(matjt[,nap],maxgap = 5,na.rm=FALSE)}
 
-    for (nap in 1: length(pxg)){ matjt[nap,]<-na.approx(matjt[nap,],maxgap = 5,na.rm=F)}
+    for (nap in 1: length(pxg)){ matjt[nap,]<-na.approx(matjt[nap,],maxgap = 5,na.rm=FALSE)}
 
-    levelplot(matjt ~ lon * lat, data=grid, cuts=20, pretty=T,contour=T)
+    levelplot(matjt ~ lon * lat, data=grid, cuts=20, pretty=TRUE,contour=TRUE)
     contour(gridx,gridy,matjt,levels=0.001)
 
     sh<-contourLines(gridx,gridy,matjt,levels=pobj)
@@ -350,11 +350,11 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py
   ext.q=0.95
 
   mex.fit <- mex(data = u2 , which = 1, mqu = thresh1, dqu = ext.q, margins = "Laplace", constrain = F)
-  mex.fit2 <- mex(data = u2, which = 2, mqu =c(thresh1), dqu = ext.q, constrain=F)
+  mex.fit2 <- mex(data = u2, which = 2, mqu =c(thresh1), dqu = ext.q, constrain=FALSE)
 
 
   mex.pred <-predict(mex.fit, pqu = tsim, nsim = num.sim,smoothZdistribution=TRUE)
-  mex.pred2<-predict(mex.fit2, pqu = tsim, nsim = num.sim,smoothZdistribution=T)
+  mex.pred2<-predict(mex.fit2, pqu = tsim, nsim = num.sim,smoothZdistribution=TRUE)
 
   #Estimation of the H&T chi
   qexp1<-quantile(u2[,2],tsim)
@@ -418,7 +418,7 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py
         ale[j,k]=jesus[j,k]/(1-lexp[j])}}
 
     plot(u2,xlim=c(0,40),ylim=c(0,300))
-    contour(lesx,lesy,ale,levels = c(0.1),col=3,ylim=c(0,200),add=T)
+    contour(lesx,lesy,ale,levels = c(0.1),col=3,ylim=c(0,200),add=TRUE)
 
     sh2<-contourLines(lesx,lesy,ale,levels=pobj/(1-tsim))
     obx<-c()
@@ -453,7 +453,7 @@ Cond.mod.ap<-function(u2,tr1,tr2,tsim,num.sim,pobj,interh="comb",mar1,mar2,px,py
     jline<-jline[order(jline$j2..1..),]
     jj1<-as.matrix(j1o[which(j1o[,2]<j1o[,1]+q2-q1),])
     jj2<-as.matrix(j2o[which(j2o[,2]>j2o[,1]+q2-q1),])
-    mj1<-min(jj1[,1],na.rm=T)
+    mj1<-min(jj1[,1],na.rm=TRUE)
     mj2<-max(jj2[,1])
     mj3<-max(jj1[,1])
     if(mj2>mj1){
