@@ -1,21 +1,20 @@
 Package: mobirep
 Title: Models Bivariate Dependence and Produces Bivariate Return Periods
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: 
     person(given = "Alois",
            family = "Tilloy",
            role = c("aut", "cre"),
            email = "alois.tilloy@kcl.ac.uk",
            comment = c(ORCID = "https://orcid.org/0000-0002-5881-0642"))
-Description: Provides a set of function that model the
-    dependence between two variables in the extremes, select most 
-    relevant models, estimate bivariate return periods and create 
-    bivariate level curves.
-    references supporting the methods used in the package:
-    main article: Tilloy et al. (2020) <doi:10.5194/nhess-20-2091-2020>
-    supporting references for condtional extremes model:Heffernan and Tawn (2004) <doi:10.1111/j.1467-9868.2004.02050.x>
-    supporting reference for Jt-KDE model: Cooley et al. (2019) <doi:10.1007/s10687-019-00348-0>
-    supporting reference for copula modelling: Nelsen (2006) <doi:10.1007/0-387-28678-0>
+Description: Models the dependence between two variables in the extremes, select most 
+    relevant models, estimate bivariate return periods and create bivariate level curves. 
+    Methods used in the package are described in the following reference:
+    Tilloy, Malamud, Winter and Joly-Laugel (2020) <doi:10.5194/nhess-20-2091-2020>
+    Supporting references for the conditional extremes model, Jt-KDE model and for copula modelling are the following: 
+    Heffernan and Tawn (2004) <doi:10.1111/j.1467-9868.2004.02050.x>
+    Cooley, Thibaud, Castillo and Wehner (2019) <doi:10.1007/s10687-019-00348-0>
+    Nelsen (2006) <doi:10.1007/0-387-28678-0>.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: True
