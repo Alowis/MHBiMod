@@ -34,7 +34,7 @@ six models and can be produced:
 -   Conditional return period (cascade)
 
 <figure>
-<img src="bivRP.png" data-align="left" alt="Types of Return Periods" /><figcaption aria-hidden="true">Types of Return Periods</figcaption>
+<img src="vignettes/bivRP.png" data-align="left" alt="Types of Return Periods" /><figcaption aria-hidden="true">Types of Return Periods</figcaption>
 </figure>
 
 Methods used in the package are described in the following reference:
