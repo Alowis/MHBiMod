@@ -1,8 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# mobirep : Models Bivariate Dependence and Produces Bivariate Return Periods
 <img src="MobiRep.png" align="right" height="200"/>
+# mobirep : Models Bivariate Dependence and Produces Bivariate Return Periods
+
 
 <!-- badges: start -->
 
