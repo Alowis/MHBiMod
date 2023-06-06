@@ -13,6 +13,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com/)
 <!-- badges: end -->
 
+<img src="MobiRep.png" align="right" height="200"/>
 ## Installation
 
 You can install the released version of mobirep from
